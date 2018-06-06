@@ -14,4 +14,41 @@ router.get('/', function (req, res, next) {
     });
 
 });
-module.exports=router;
+router.post('/', function (req, res, next) {
+
+    task.addTask(req.body, function (err, rows) {
+        if (err) {
+            res.json(err);
+        }
+        else {
+            res.json(rows);
+        }
+    });
+});
+router.delete('/:id', function (req, res, next) {
+
+    task.deleteTask(req.params.id, function (err, rows) {
+
+        if (err) {
+            res.json(err);
+        }
+        else {
+            res.json(rows);
+        }
+
+    });
+});
+router.put('/:id', function (req, res, next) {
+
+    task.updateTask(req.params.id, req.body, function (err, rows) {
+
+        if (err) {
+            res.json(err);
+        }
+        else {
+            res.json(rows);
+        }
+    });
+});
+
+module.exports = router;
