@@ -1,9 +1,9 @@
-var product=require('../model/product_model');
+var student=require('../model/student_model');
 var express=require('express');
 var router=express.Router();
 
 router.get('/',function(req,res,next){
-    product.getAllProduct(function(err,rows){
+    student.getAllStudnet(function(err,rows){
         if(err)
         {
             res.json(err);
@@ -15,19 +15,7 @@ router.get('/',function(req,res,next){
     });
 });
 router.post('/',function(req,res,next){
-    product.addProduct(req.body,function(err,rows){
-        if(err)
-        {
-            res.json(err);
-        }
-        else
-        {
-            res.json(rows);
-        }
-    });
-});
-router.put('/:id',function(req,res,next){
-    product.updateProduct(req.body,req.params.id,function(err,rows){
+    student.addStudent(req.body,function(err,rows){
         if(err)
         {
             res.json(err);
@@ -39,7 +27,19 @@ router.put('/:id',function(req,res,next){
     });
 });
 router.delete('/:id',function(req,res,next){
-    product.deleteProduct(req.params.id,function(err,rows){
+    student.deleteStudent(req.params.id,function(err,rows){
+        if(err)
+        {
+            res.json(err);
+        }
+        else
+        {
+            res.json(rows);
+        }
+    });
+});
+router.put('/:id',function(req,res,next){
+    student.updateStudent(req.params.id,req.body,function(err,rows){
         if(err)
         {
             res.json(err);
