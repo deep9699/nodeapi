@@ -11,6 +11,9 @@ var student={
     },
     updateStudent:function(id,item,callback){
         db.query("update student set name=?,percentage=?,result=? where id=?",[item.name,item.percentage,item.result,id],callback);
+    },
+    getStudentById:function(id,callback){
+        db.query("select * from student where id=?",[id],callback);
     }
 };
 module.exports=student;

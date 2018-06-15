@@ -2,7 +2,20 @@ var product=require('../model/product_model');
 var express=require('express');
 var router=express.Router();
 
-router.get('/',function(req,res,next){
+router.get('/:id?',function(req,res,next){
+    if(req.params.id){
+        product.getProductById(req.params.id,function(err,rows){
+            if(err)
+            {
+                res.json(err);
+            }
+            else
+            {
+                res.json(rows);
+            }    
+        });
+    }
+    else{
     product.getAllProduct(function(err,rows){
         if(err)
         {
@@ -13,6 +26,7 @@ router.get('/',function(req,res,next){
             res.json(rows);
         }
     });
+}
 });
 router.post('/',function(req,res,next){
     product.addProduct(req.body,function(err,rows){

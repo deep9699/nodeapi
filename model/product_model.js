@@ -1,5 +1,8 @@
 var db=require('../dbconnection');
 var product={
+    getProductById:function(id,callback){
+        return db.query('select * from product_tbl where p_id=?',[id],callback);
+    },
     getAllProduct:function(callback){
         return db.query('select * from product_tbl',callback);
     },
