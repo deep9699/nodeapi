@@ -17,6 +17,22 @@ var user_mod = {
     },
     updateUserpass:function(item,callback){
         return db.query("update user_tbl set password=? where email_id=?",[item.password,item.email_id],callback);
+    },
+    getAllCat:function(callback){
+        return db.query("select * from cat_tbl",callback);
+    },
+    getAllPro:function(callback){
+        return db.query("select * from pro_tbl",callback);
+    },
+    getProByCat:function(cat_name,callback){
+        return db.query("select c.*,p.* from pro_tbl p,cat_tbl c where p.fkcat_id=c.cat_id and c.cat_name=?",[cat_name],callback)
+    },
+    getProById:function(p_id,callback){
+        return db.query("select * from pro_tbl where p_id=?",[p_id],callback);
+    },
+    getProByCatId:function(c_id,p_id,callback){
+        return db.query("select * from pro_tbl where fkcat_id=? and p_id NOT IN (?)",[c_id,p_id],callback);
+                         
     }
 
 }
