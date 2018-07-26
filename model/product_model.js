@@ -6,8 +6,8 @@ var product={
     getAllProduct:function(callback){
         return db.query('select * from product_tbl',callback);
     },
-    addProduct:function(item,callback){
-        return db.query("Insert into product_tbl values(?,?,?,?,?,?)",[item.p_id,item.p_name,item.p_price,item.p_quantity,item.p_status,item.p_img],callback);
+    addProduct:function(item,filename,callback){
+        return db.query("Insert into product_tbl values(?,?,?,?,?,?)",[item.p_id,item.p_name,item.p_price,item.p_quantity,item.p_status,filename],callback);
     },
     deleteProduct:function(id,callback){
         return db.query("delete from product_tbl where p_id=?",[id],callback);
